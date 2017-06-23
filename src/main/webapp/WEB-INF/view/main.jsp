@@ -82,7 +82,7 @@
 <script type="text/javascript">
 
     var textarea = document.getElementById("messageWindow");
-    var webSocket = new WebSocket('ws://70.12.110.160:8080/chat');
+    var webSocket = new WebSocket('ws://sooheesong.com:8080/game/chat');
     var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
         onError(event)
