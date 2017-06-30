@@ -14,6 +14,44 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/baseball")
 public class ChangePntLvlController {
+//
+//    private ChangePointLevelService changePointLevelService;
+//    private AuthService authService;
+//
+//    public void setAuthService(AuthService authService) {
+//        this.authService = authService;
+//    }
+//
+//    public void setChangePointLevelService(
+//            ChangePointLevelService changePointLevelService) {
+//        this.changePointLevelService = changePointLevelService;
+//    }
+//
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String baseballView() {
+//        return "game/baseball";
+//    }
+//
+//    @RequestMapping(method = RequestMethod.POST)
+//    public String ajaxView(
+//            @RequestBody ChangePntLvlCommand pntLvlCmd,
+//            HttpSession session) {
+//
+//        AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+//
+//        changePointLevelService.changePointLevel(
+//                authInfo.getEmail(),
+//                pntLvlCmd.getNewPoint(),
+//                pntLvlCmd.getNewLevel()
+//        );
+//
+//        AuthInfo authInfo2 = authService.pointLevelUpdate(authInfo.getEmail());
+//
+//        session.setAttribute("authInfo", authInfo2);
+//
+//        return "game/baseball";
+//    }
+//}
 
     private ChangePointLevelService changePointLevelService;
     private AuthService authService;
@@ -27,25 +65,50 @@ public class ChangePntLvlController {
         this.changePointLevelService = changePointLevelService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/tetris", method = RequestMethod.GET)
+    public String tetrisView() {
+        return "game/tetris";
+    }
+
+    @RequestMapping(value = "/baseball", method = RequestMethod.GET)
     public String baseballView() {
         return "game/baseball";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String ajaxView(
+    @RequestMapping(value = "/tetris", method = RequestMethod.POST)
+    public String ajaxTetris(
             @RequestBody ChangePntLvlCommand pntLvlCmd,
             HttpSession session) {
 
         AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 
         changePointLevelService.changePointLevel(
-                authInfo.getEmail(),
+                authInfo.getId(),
                 pntLvlCmd.getNewPoint(),
                 pntLvlCmd.getNewLevel()
         );
 
-        AuthInfo authInfo2 = authService.pointLevelUpdate(authInfo.getEmail());
+        AuthInfo authInfo2 = authService.pointLevelUpdate(authInfo.getId());
+
+        session.setAttribute("authInfo", authInfo2);
+
+        return "game/tetris";
+    }
+
+    @RequestMapping(value = "/baseball", method = RequestMethod.POST)
+    public String ajaxBaseball(
+            @RequestBody ChangePntLvlCommand pntLvlCmd,
+            HttpSession session) {
+
+        AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+
+        changePointLevelService.changePointLevel(
+                authInfo.getId(),
+                pntLvlCmd.getNewPoint(),
+                pntLvlCmd.getNewLevel()
+        );
+
+        AuthInfo authInfo2 = authService.pointLevelUpdate(authInfo.getId());
 
         session.setAttribute("authInfo", authInfo2);
 
