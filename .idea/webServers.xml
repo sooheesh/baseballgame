@@ -2,12 +2,20 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="0abd7916-5f8f-45b0-8229-6d0e690d1681" name="sooheesong" url="http://sooheesong.com">
-        <fileTransfer host="sooheesong.com" port="22" privateKey="C:\Users\student\Desktop\sooheesong.ppk" rootFolder="/opt/tomcat/webapps/game" accessType="SFTP" keyPair="true">
+      <webServer id="0abd7916-5f8f-45b0-8229-6d0e690d1681" name="sooheesongSFTP" url="http://sooheesong.com">
+        <fileTransfer host="sooheesong.com" port="22" privateKey="$USER_HOME$/Google Drive/key/sooheesong.ppk" rootFolder="/opt/tomcat/webapps" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
           <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="1705ea3d-4e61-4d59-96c5-193378fc445c" name="sooheesongFTP" url="http://sooheesong.com">
+        <fileTransfer host="sooheesong.com" port="21" rootFolder="/opt/tomcat/webapps">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
         </fileTransfer>
       </webServer>
     </option>

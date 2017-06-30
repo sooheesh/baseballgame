@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="sooheesong">
+  <component name="PublishConfigData" serverName="sooheesongSFTP">
     <serverData>
-      <paths name="sooheesong">
+      <paths name="sooheesongFTP">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$/target/baseballgame-0.0.1-SNAPSHOT" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="sooheesongSFTP">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/target/game" web="/" />
           </mappings>
         </serverdata>
       </paths>
