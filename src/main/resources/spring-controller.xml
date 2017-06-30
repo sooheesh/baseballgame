@@ -13,6 +13,9 @@
 	<mvc:view-controller path="/test" view-name="/test/progressBar"/>
 	<mvc:view-controller path="/rank" view-name="/game/rank"/>
 	<mvc:view-controller path="/chat" view-name="/chat/chat"/>
+	<mvc:view-controller path="/tetris" view-name="/game/tetris"/>
+	<mvc:view-controller path="/tetrisFight" view-name="/game/tetrisFight"/>
+
 
 	<bean class="controller.RegisterController">
 		<property name="memberRegisterService" ref="memberRegSvc" />
@@ -60,5 +63,8 @@
 	<bean class="controller.TestController" />
 
 	<bean class="socket.BroadSocket" />
+
+	<bean class="controller.TetrisFightController">
+	</bean>
 
 </beans>

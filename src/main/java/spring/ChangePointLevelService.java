@@ -14,13 +14,13 @@ public class ChangePointLevelService {
     }
 
     @Transactional
-    public void changePointLevel(String email, int newPoint, int newLevel) {
-        Member member = memberDao.selectByEmail(email);
-        if (member == null)
+    public void changePointLevel(long id, int newPoint, int newLevel) {
+        TetrisMember tetrisMember = memberDao.tetrisById(id);
+        if (tetrisMember == null)
             throw new MemberNotFoundException();
 
-        member.changePointLevel(newPoint, newLevel);
+        tetrisMember.changePointLevel(newPoint, newLevel);
 
-        memberDao.updatePointLevel(member);
+        memberDao.updatePointLevel(tetrisMember);
     }
 }

@@ -3,48 +3,66 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="true"%>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <%--<script src="<c:url value="/resources/js/jquery-3.2.1.min.js"/>"></script>--%>
+    <%--font--%>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>Main</title>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
+
+    <title>Tetris</title>
+
+
+
 </head>
-
 <body>
-<c:if test="${empty authInfo}">
-    <p>환영합니다.</p>
-    <p>
-        <a href="<c:url value="/register/step1" />">[회원 가입하기]</a>
-    	<a href="<c:url value="/login" />">[로그인]</a>
-    </p>
-</c:if>
-    
-<c:if test="${! empty authInfo}">
-    <p>${authInfo.name}님, 환영합니다.</p>
-    <p>
-        <a href="<c:url value="/baseball"/>">[Baseball Game]</a>
-        <a href="<c:url value="/tetris"/>">[Tetris]</a>
-        <a href="<c:url value="/tetrisFight"/>">[Tetris 대결 모드]</a>
-    	<a href="<c:url value="/edit/changePassword" />">[비밀번호 변경]</a>
-    	<a href="<c:url value="/logout" />">[로그아웃]</a>
-    </p>
 
-</c:if>
+<div class="body"></div>
 
+<%--헤더--%>
+<table id="header">
 
+    <%--로그인 이름--%>
+    <td class="dropdown">
+        <button class="id btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+            ${authInfo.name}
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="<c:url value="/edit/changePassword" />">[비밀번호 변경]</a></li>
+            <li><a href="<c:url value="/logout" />">[로그아웃]</a></li>
+        </ul>
+    </td>
+    <%--끝 - 로그인 이름--%>
 
-<%--<a href="<c:url value="/test" />">test로 이동</a>--%>
+    <%--레벨정보--%>
+    <td>
+        <button class="lvl btn btn-link" type="button">
+            <a id="lvl" href="<c:url value="/rank" />">Lv. ${authInfo.level}</a>
+        </button>
+    </td>
+    <%--끝 - 레벨정보--%>
+
+    <%--경험치 정보--%>
+    <td class="exp">
+        <div class="progress">
+            <div id="pro" class="progress-bar" style="width:${authInfo.point}%"></div>
+            <div id="min" class="progress-bar"></div>
+        </div>
+    </td>
+    <%--끝 - 경험치 정보--%>
+
+</table>
+<%--끝 - 헤더--%>
 
 <!-- 로그인한 상태일 경우와 비로그인 상태일 경우의 chat_id설정 -->
 <c:if test="${(authInfo.name ne '') and !(empty authInfo.name)}">
@@ -54,7 +72,41 @@
     <input type="hidden" value='익명<%=session.getId().substring(0,4)%>' id='chat_id' />
 </c:if>
 
-<a class="chat">[Chat]</a>
+
+<div class="tetris-fight-tables">
+    <table class="tetris-table2">
+        <tbody>
+        <c:forEach var = "i" begin = "1" end = "22">
+            <tr>
+                <c:forEach var="k" begin="0" end="9">
+                    <td class="2td${i}${k}"></td>
+                </c:forEach>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+<div style="width:100px;display:inline-table"></div>
+
+    <table class="tetris-table1">
+        <tbody>
+        <c:forEach var = "i" begin = "1" end = "22">
+            <tr>
+                <c:forEach var="k" begin="0" end="9">
+                    <td class="1td${i}${k}"></td>
+                </c:forEach>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<div id="key"></div>
+</body>
+</html>
+
+
+
+<a class="chat">[Waiting For Other Player...]</a>
 
 <!--     채팅창 -->
 <div id="_chatbox" style="display: none">
@@ -65,24 +117,7 @@
     </fieldset>
 </div>
 
-
-
 </body>
-<!-- 말풍선아이콘 클릭시 채팅창 열고 닫기 -->
-<script>
-
-    $(".chat").on({
-        "click" : function() {
-            if ($(this).css("display", "block")) {
-                $(this).css("display", "none");
-                $("#_chatbox").css("display", "block");
-            } else if ($(this).css("display", "none")) {
-                $(this).css("display", "block");
-                $("#_chatbox").css("display", "none");
-            }
-        }
-    });
-</script>
 
 <script type="text/javascript">
 

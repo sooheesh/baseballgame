@@ -1,0 +1,178 @@
+@CHARSET "UTF-8";
+
+/*baseball*/
+.btn.id, .btn.lvl {
+    padding: 6px 0px;
+}
+
+button#replay.focus, button#replay:focus {
+    color: #333;
+    background-color: white;
+    border-color: #8c8c8c;
+}
+
+.board {
+    background: rgba(255,255,255, 0.7);
+    border-radius: 35px;
+    padding: 15px 15px 28px 15px;
+    position: relative;
+    z-index: 9999;
+    text-align: center;
+}
+
+.title {
+    height: 233px;
+    margin-top: 89px;
+    z-index: 9999;
+    position: relative;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.title h1 {
+    padding-top: 109px
+}
+
+.number {
+    margin: auto;
+    display: inline-flex;
+}
+
+div#msg, div#msg2 {
+    margin-top: 18px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+}
+
+input {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+    font-size: 40px;
+    margin-right: 20px;
+}
+
+input#num3 {
+    margin-right: 0px;
+}
+/*숫자 입력칸의 화살표를 삭제*/
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+
+div#ans1, div#ans2, div#ans3 {
+    width: 52px;
+    height: 52px;
+    padding: 5px;
+    text-align: center;
+    font-size: 41px;
+    margin-right: 20px;
+    font-family: Arial;
+
+}
+
+div#ans3 {
+    margin-right: 0px;
+}
+
+.progress {
+    width: 150px;
+    margin-bottom: 0px;
+}
+
+.progress-bar {
+    background-color: rgb(55, 191, 230);
+}
+
+.id {
+    height: 42px;
+}
+
+.btn-link {
+    color: black;
+}
+
+.dropdown, .lvl, .exp {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.lvl {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+}
+
+table#header {
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+div#min {
+    /*top: -20px;*/
+    position: relative;
+    background-color: red;
+    width: 0;
+}
+
+a#lvl, a#lvl:hover {
+    color: black;
+}
+
+/*반응형에 맞게 마진 조절*/
+@media all and (max-width:670px){
+    .title {
+        margin-top: 0px;
+    }
+}
+
+
+/*tetris*/
+.tetris-table {
+    /*border-collapse: collapse;*/
+    /*border: 1px solid rgb(232, 232, 232);*/
+    margin: auto;
+    border-spacing: 1px;
+    border-collapse: separate;
+}
+.tetris-table td {
+    width: 25px;
+    height: 25px;
+    background-color: rgb(240, 240, 240);
+}
+
+/*tetrisFight*/
+.tetris-table2 {
+    /*border-collapse: collapse;*/
+    /*border: 1px solid rgb(232, 232, 232);*/
+    margin: auto;
+    border-spacing: 1px;
+    border-collapse: separate;
+    display: inline-table;
+}
+.tetris-table2 td {
+    width: 25px;
+    height: 25px;
+    background-color: rgb(240, 240, 240);
+}
+.tetris-table1 {
+    /*border-collapse: collapse;*/
+    /*border: 1px solid rgb(232, 232, 232);*/
+    margin: auto;
+    border-spacing: 1px;
+    border-collapse: separate;
+    display: inline-table;
+}
+.tetris-table1 td {
+    width: 25px;
+    height: 25px;
+    background-color: rgb(240, 240, 240);
+}
+
+.tetris-fight-tables {
+    text-align: center;
+    margin: 50px auto;
+
+}

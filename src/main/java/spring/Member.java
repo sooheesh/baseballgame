@@ -63,9 +63,4 @@ public class Member {
 	public boolean matchPassword(String pwd) {
 		return this.password.equals(pwd);
 	}
-
-	public void changePointLevel(int newPoint, int newLevel){
-		this.point = newPoint;
-		this.level = newLevel;
-	}
 }

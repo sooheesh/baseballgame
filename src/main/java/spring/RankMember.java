@@ -2,7 +2,7 @@ package spring;
 
 public class RankMember {
 
-	private String name;
+	private long id;
 	private int level;
 	private int rank;
 
@@ -11,12 +11,12 @@ public class RankMember {
 		this.rank = rank;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public long getId() {
+		return id;
 	}
 
 	public int getLevel(){

@@ -19,12 +19,14 @@ public class AuthService {
 		return new AuthInfo(member.getId(), member.getEmail(), member.getName(), member.getPoint(), member.getLevel());
 	}
 
-	public AuthInfo pointLevelUpdate(String email){
-		Member member = memberDao.selectByEmail(email);
+	public AuthInfo pointLevelUpdate(long id){
+		Member member = memberDao.selectById(id);
 		if (member == null) {
 			throw new IdPasswordNotMatchingException();
 		}
-		return new AuthInfo(member.getId(), member.getEmail(), member.getName(), member.getPoint(), member.getLevel());
+		TetrisMember tetrisMember = memberDao.tetrisById(id);
+
+		return new AuthInfo(member.getId(), member.getEmail(), member.getName(), tetrisMember.getPoint(), tetrisMember.getLevel());
 	}
 
 }

@@ -26,4 +26,6 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
+
 </beans>

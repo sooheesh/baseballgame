@@ -78,9 +78,9 @@ public class MemberDao {
 				member.getName(), member.getPassword(), member.getEmail());
 	}
 
-	public void updatePointLevel(Member member) {
-		jdbcTemplate.update("update MEMBER set POINT = ?, LEVEL = ? where EMAIL = ?",
-				member.getPoint(), member.getLevel(), member.getEmail());
+	public void updatePointLevel(TetrisMember tetrisMember) {
+		jdbcTemplate.update("update TETRIS set POINT = ?, LEVEL = ? where ID = ?",
+				tetrisMember.getPoint(), tetrisMember.getLevel(), tetrisMember.getId());
 	}
 
 	public List<Member> selectAll() {
@@ -121,7 +121,7 @@ public class MemberDao {
 					rs.getInt("LEVEL"),
 					rs.getInt("RANK")
 			);
-			rankMember.setName(rs.getString("NAME"));
+			rankMember.setId(rs.getLong("ID"));
 			return rankMember;
 		}
 	};
@@ -129,10 +129,32 @@ public class MemberDao {
 
 	public List<RankMember> rankById() {
 		List<RankMember> results = jdbcTemplate.query(
-				"select NAME, rank() over (order by LEVEL desc, POINT desc) as RANK, LEVEL from MEMBER " +
+				"select ID, rank() over (order by LEVEL desc, POINT desc) as RANK, LEVEL from TETRIS " +
 						"order by LEVEL desc, POINT desc",
 				rankMemRowMapper);
 		return results;
+	}
+
+	private RowMapper<TetrisMember> tetrisMemRowMapper = new RowMapper<TetrisMember>() {
+		@Override
+		public TetrisMember mapRow(ResultSet rs, int rowNum)
+				throws SQLException {
+			TetrisMember TetrisMember = new TetrisMember(
+					rs.getInt("POINT"),
+					rs.getInt("LEVEL")
+			);
+			TetrisMember.setId(rs.getInt("ID"));
+			return TetrisMember;
+		}
+	};
+
+	public TetrisMember tetrisById(Long id) {
+		List<TetrisMember> results = jdbcTemplate.query(
+				"select * from TETRIS where ID = ?",
+				tetrisMemRowMapper,
+				id);
+
+		return results.isEmpty() ? null : results.get(0);
 	}
 
 

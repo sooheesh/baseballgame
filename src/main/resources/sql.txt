@@ -1,0 +1,27 @@
+create user 'sooheesong'@'localhost' identified by 'shjc0903';
+
+create database game character set=utf8;
+
+grant all privileges on game.* to 'sooheesong'@'localhost';
+
+create table game.MEMBER (
+	ID int auto_increment primary key,
+	EMAIL varchar(255),
+	PASSWORD varchar(100),
+	NAME varchar(100),
+	REGDATE datetime,
+	unique key (EMAIL) 
+) engine=InnoDB character set = utf8; 
+
+insert into game.MEMBER values (1, 'madvirus@madvirus.net', '1234', '최범균', '2014-12-01 13:01:02');
+insert into game.MEMBER values (2, 'bkchoi@bkchio.com', '5678', '최BK', '2014-12-03 18:31:49');
+insert into game.MEMBER values (3, 'gildong@some.com', '1234', '홍길동', '2014-11-19 00:21:02');
+insert into game.MEMBER values (4, 'kingsejon@chosunking.org', '1234', '세종대왕', '2014-12-08 19:00:00');
+insert into game.MEMBER values (5, 'sooheesh@icloud.com', '1234', '송수희', '2016-12-08 19:00:00');
+
+create table game.TETRIS(
+    ID int,
+    POINT int,
+    LEVEL int,
+    FOREIGN KEY (ID) REFERENCES MEMBER(id) on delete cascade
+) engine=InnoDB character set = utf8; 
